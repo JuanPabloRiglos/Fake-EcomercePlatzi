@@ -23,14 +23,7 @@ function App() {
 
   return (
     
-      // <div className='bg-teal-300'>
-      //  <Home />
-      //  <MyAccount/>
-      //  <MyOrder/>
-      //  <MyOrders/>
-      //  <NotFound/>
-      //  <Signin/>
-      // </div> 
+      
       <BrowserRouter>
      <AppRoutes/>
       </BrowserRouter>
