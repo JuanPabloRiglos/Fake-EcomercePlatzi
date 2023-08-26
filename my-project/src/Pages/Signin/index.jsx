@@ -1,12 +1,12 @@
 
-
+import Layout from "../../Components/Layout/Index"
 function Signin() {
 
   return (
     
-      <div className='bg-teal-300'>
+      <Layout className='bg-teal-300'>
         Signin
-      </div>
+      </Layout>
   
     
   )

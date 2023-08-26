@@ -1,12 +1,12 @@
 
-
+import Layout from "../../Components/Layout/Index"
 function MyAccount() {
 
   return (
     
-      <div className='bg-teal-300'>
+      <Layout className='bg-teal-300'>
         MyAccount
-      </div>
+      </Layout>
   
     
   )

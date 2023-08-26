@@ -1,12 +1,12 @@
-
+import Layout from "../../Components/Layout/Index"
 
 function MyOrder() {
 
   return (
     
-      <div className='bg-teal-300'>
+      <Layout className='bg-teal-300'>
         MyOrder
-      </div>
+      </Layout>
   
     
   )
