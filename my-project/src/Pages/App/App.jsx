@@ -6,6 +6,7 @@ import MyOrders from '../My-Orders';
 import NotFound from '../NotFound';
 import Signin from '../Signin';
 import Navbar from '../../Components/Navbar/Index';
+import { ShoppingCartProvider } from '../../Context/Index';
 import './App.css'
 
 
@@ -24,12 +25,12 @@ function App() {
 
   return (
     
-      
+      <ShoppingCartProvider>
       <BrowserRouter>
      <AppRoutes/>
      <Navbar />
       </BrowserRouter>
-  
+  </ShoppingCartProvider>
     
   )
 }
