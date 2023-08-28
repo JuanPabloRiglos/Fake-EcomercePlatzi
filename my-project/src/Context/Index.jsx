@@ -14,8 +14,32 @@ export const ShoppingCartProvider = ({children}) =>{
 
     // product detail - show products
     const [productToShow , setProductToShow] = useState({});
-    console.log(productToShow)
 
+
+    //Product Cart (carrito)
+    const [cartProducts , setCartProducts] = useState([ ])
+
+    // checkout Side Menu --> Show Cart
+    const [booleanCheckoutSM , setbooleanCheckoutSM] =useState(true)
+    const changeBoleanCSM =()=>{
+        setbooleanCheckoutSM(! booleanCheckoutSM)
+    };
+    // retorna el valor total de productos en el carrito
+     
+    const totalPrice=()=>{
+        let totalValue = 0;
+        for(let i = 0 ; i < cartProducts.length ; i ++){
+            if(cartProducts[i].quantity >= 1){
+                let priceForTotal = cartProducts[i].price * cartProducts[i].quantity
+                totalValue = totalValue + priceForTotal
+            }
+
+            totalValue = totalValue + cartProducts[i].price
+        }
+           return totalValue
+        };
+    
+  
     return (
         <ShoppingCartContext.Provider value={{
             count,
@@ -23,7 +47,12 @@ export const ShoppingCartProvider = ({children}) =>{
             changeBoleanPD,
             booleanProductDetail,
             productToShow,
-            setProductToShow
+            setProductToShow, 
+            cartProducts,
+            setCartProducts,
+            booleanCheckoutSM,
+            changeBoleanCSM,
+            totalPrice
             }}>
         {children}
         </ShoppingCartContext.Provider>

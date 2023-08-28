@@ -8,7 +8,7 @@ import './ProductDetail.css'
     const context = useContext(ShoppingCartContext)
     let itemToShow = context.productToShow;
     return(
-<aside className={`${context.booleanProductDetail == false ? 'flex' : 'hidden' } productDetail  flex-col fixed right-2.5 border border-black rounded-lg bg-white`}>
+<aside className={`${context.booleanProductDetail == false ? 'flex' : 'hidden' } productDetail  flex-col fixed right-2.5 border border-black rounded-lg bg-white overflow-y-scroll`}>
         <div className='flex justify-between items-center px-4 py-2'>
         <h2 className='font-medium text-xl'> Detail </h2>
         <div className='cursor-pointer' onClick={()=> context.changeBoleanPD()}>✖️</div>

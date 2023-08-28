@@ -1,7 +1,10 @@
 .productDetail{
-    width: 358px;
+    width: 18vw;
     height: fit-content;
-    top: 60px;
+    max-height: 80vh;
+    top: 70px;
+
+    
 }
 /* .productDetail img{
     /* w-full 

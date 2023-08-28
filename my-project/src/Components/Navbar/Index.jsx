@@ -5,6 +5,10 @@ import { ShoppingCartContext} from '../../Context/Index'
 
 function Navbar(){
 const context = useContext(ShoppingCartContext)
+
+function showCart(){// aun no anda, si hace falta, revisar al final del curso.
+    if ( context.booleanCheckoutSM) { context.changeBoleanCSM()}
+}
     const activeStyle = 'underline underline-offset-4'
     return(
         <nav className='flex justify-between items-center fixed z-5 top-0 w-full py-5 px-8 text-sm font-light' >
@@ -68,9 +72,10 @@ const context = useContext(ShoppingCartContext)
                          Sing In
                      </NavLink>
                 </li>
-                <li className='flex justify-center items-center'>
+                <li className='flex justify-center items-center' onClick={()=>{showCart()}}>
                     <NavLink to='/MyOrder' className={({isActive})=> isActive? activeStyle:undefined}> 
                     🛒 {context.count}    
+
                      </NavLink>
                 </li>
             </ul>
