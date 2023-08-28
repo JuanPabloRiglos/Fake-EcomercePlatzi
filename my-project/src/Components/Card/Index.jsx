@@ -49,7 +49,7 @@ function Card({data : item}){
             {renderIcon(item.id)}
         </figure>
         <p  className='flex justify-between'>
-        <span  className=" text-sm font-light"> {item.title}</span>
+        <span  className=" text-sm font-light"> {`${item.title.substring(0, 15)} ... see more.`}</span>
         <span  className=" text-sm font-medium "> {item.price} </span>
       </p>
         </div>

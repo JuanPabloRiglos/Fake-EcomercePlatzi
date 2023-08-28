@@ -9,7 +9,7 @@ const OrderCard= product =>{
                     <img className="w-full h-full rounded-lg object-cover" src={`${image}`} alt={`${title}`} />
                 </figure>  
                 <div className=" flex justify-around ">
-                    <p onClick={()=>{removeToCartOneOfOne(id)}}> - </p>
+                    <p className="cursor-pointer" onClick={()=>{removeToCartOneOfOne(id)}}> - </p>
                     <p> {quantity} </p>
                     <p className="cursor-pointer" onClick={()=>{addMore(id)}}> + </p>
                   </div>
