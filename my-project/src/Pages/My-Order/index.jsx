@@ -7,7 +7,7 @@ import OrderCard from '../../Components/OrderCard/Index'
 function MyOrder() {
 
   const context = useContext(ShoppingCartContext)
-  let lastOrder = [...context.order];
+  let oldsOrder = [...context.order];
  let currentPath = window.location.pathname;
  let idInPath = Object.values(currentPath).pop()
 
@@ -25,13 +25,21 @@ function MyOrder() {
 
 
         <div className='px-6 overflow-y-scroll'>
-        {lastOrder[idInPath].products.map((item) => (<OrderCard key={item.id}
+        { (idInPath)? oldsOrder[idInPath].products.map((item) => (<OrderCard key={item.id}
         id={item.id} 
         title={item.title}
         image={item.image}
         price={item.price}
         quantity={item.quantity}
-        /> ))}
+        /> )): 
+        oldsOrder[oldsOrder.length -1].products.map((item) => (<OrderCard key={item.id}
+          id={item.id} 
+          title={item.title}
+          image={item.image}
+          price={item.price}
+          quantity={item.quantity}
+          /> ))
+         }
         </div>
       </Layout>
   

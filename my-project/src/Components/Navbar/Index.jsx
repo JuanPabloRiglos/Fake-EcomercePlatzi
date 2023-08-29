@@ -9,38 +9,48 @@ const context = useContext(ShoppingCartContext)
 function showCart(){// aun no anda, si hace falta, revisar al final del curso.
     if ( context.booleanCheckoutSM) { context.changeBoleanCSM()}
 }
+
+const deletedFilters =()=>{
+    context.setSearchByCategory(null);
+    context.setSearchByTitle(null);
+}
     const activeStyle = 'underline underline-offset-4'
     return(
         <nav className='flex justify-between items-center fixed z-5 top-0 w-full py-5 px-8 text-sm font-light' >
             <ul className='flex items-center gap-3'>
                 <li className='font font-semibold'>
                     <NavLink  to='/' 
+                    onClick={()=>{deletedFilters()}}
                     className={({isActive})=> isActive? activeStyle:undefined} >
                     Shopi         
                      </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/all' className={({isActive})=> isActive? activeStyle:undefined}> 
+                <li >
+                    <NavLink to='/' 
+                     onClick={()=>{deletedFilters()}}
+                     className={({isActive})=> isActive? activeStyle:undefined}> 
                     All         
                      </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/womensClothing' className={({isActive})=> isActive? activeStyle:undefined}> 
+                <li onClick={()=>{context.setSearchByCategory("women's clothing")}}>
+                    <NavLink to='/womenClothing' 
+                     
+                    className={({isActive})=> isActive? activeStyle:undefined } >  
                     women Clothing         
                      </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/menClothing' className={({isActive})=> isActive? activeStyle:undefined}> 
-                    men clothing
+                <li onClick={()=>{context.setSearchByCategory("men's clothing")}}>
+                    <NavLink  to='/menClothing' className={({isActive})=> isActive? activeStyle:undefined}> 
+                    men Clothing
                      </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/electronies' className={({isActive})=> isActive? activeStyle:undefined}> 
+                <li onClick={()=>{context.setSearchByCategory("electronics")}}>
+                    <NavLink  to='/Electronies' className={({isActive})=> isActive? activeStyle:undefined}> 
                     Electronies          
                      </NavLink>
                 </li>
-                <li>
-                    <NavLink to='/jewelery' className={({isActive})=> isActive? activeStyle:undefined}> 
+                <li onClick={()=>{context.setSearchByCategory("jewelery")}}>
+                    <NavLink  to='/jewelery' className={({isActive})=> isActive? activeStyle:undefined}> 
                     jewelery         
                      </NavLink>
                 </li>

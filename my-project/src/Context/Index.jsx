@@ -1,9 +1,21 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
-import { createContext , useState} from 'react'
+
+import { createContext , useState , useEffect} from 'react'
 
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({children}) =>{
+
+    const [items, setItems] = useState([]);
+    
+
+    useEffect(()=>{
+      fetch('https://fakestoreapi.com/products')
+      .then(response => response.json())
+      .then(data => setItems(data))
+    }, [])
+  
     //cantidad de productos en el carrito
     const [count , setCount]= useState(0);
     // seteador de estado para mostrar detalle de producto
@@ -29,6 +41,34 @@ export const ShoppingCartProvider = ({children}) =>{
 
     const [order , setOrder] = useState([ ])
 
+    // Filtrado de datos por
+    const [filtredItems, setFiltredItems] = useState([])
+    //title
+    const [searchByTitle , setSearchByTitle] = useState(null)
+    console.log(searchByTitle);
+     const filteredItemsByTitleFuncion  =( items , searchByTitle ) =>{
+        return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+     }
+    //categoy
+    const [searchByCategory , setSearchByCategory] = useState(null)
+    console.log(searchByCategory);
+    const filteredItemsByCategoryFuncion = ( items , searchByCategory ) =>{
+        return items?.filter((item) => item.category.toLowerCase().includes(searchByCategory))
+     }
+    //  //see ALL again
+    //  const seeAllAgein =  (items) =>{
+    //     return items?.map((item) => setItems(item))
+    //  }
+     //useEfect segun Search
+
+     useEffect(()=>{
+        if(searchByTitle)
+        {setFiltredItems(filteredItemsByTitleFuncion(items, searchByTitle))
+     }else if(searchByCategory) {
+      setFiltredItems(filteredItemsByCategoryFuncion(items , searchByCategory))}
+     },[items, searchByTitle , searchByCategory])
+    console.log('filtredItems nuevos: ', filtredItems )
+
     // retorna el valor total de productos en el carrito
      
     const totalPrice=()=>{
@@ -47,6 +87,8 @@ export const ShoppingCartProvider = ({children}) =>{
   
     return (
         <ShoppingCartContext.Provider value={{
+            items,
+            setItems,
             count,
             setCount,
             changeBoleanPD,
@@ -59,7 +101,13 @@ export const ShoppingCartProvider = ({children}) =>{
             changeBoleanCSM,
             totalPrice, 
             order, 
-            setOrder
+            setOrder, 
+            searchByTitle, 
+            setSearchByTitle,
+            filtredItems, 
+            setFiltredItems,
+            searchByCategory,
+            setSearchByCategory
             }}>
         {children}
         </ShoppingCartContext.Provider>
