@@ -5,7 +5,7 @@ import './style.css'
 
 
 function Card({data : item}){
-    console.log(item)
+
     const context = useContext(ShoppingCartContext)
    
    const showProductDetail =()=>{
@@ -28,7 +28,7 @@ function Card({data : item}){
  function renderIcon(id){
     // bloquea el boton para agregar product al carrito poniendo un check en su lugar
     let isInCart = context.cartProducts.filter(product => product.id == id).length > 0;
-    console.log(isInCart)
+  
     if(isInCart){
         return(
                 <div className={`absolute top-0 right-0 flex justify-center items-center bg-green-600 color-white w-6 h-6 rounded-full m-2 p-1 border border-black text-white`}>✓</div> 

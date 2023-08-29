@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import {NavLink} from 'react-router-dom';
 import {ShoppingCartContext} from '../../Context/Index'
 import OrderCard from '../OrderCard/Index'
 import './styles.css'
@@ -48,8 +49,31 @@ import './styles.css'
         let totalToDescount = removeToCart[0].quantity
         context.setCount(context.count - totalToDescount)}
 
+        function handleCheckout (){
+            let dateForJson =  new Date()
+            let dateString = JSON.stringify(dateForJson).substring(0,11)
+            let date =( dateString + ' "')
+            let totalPriceForJson = context.totalPrice();
+            // let finalTotalPrice = JSON.stringify(totalPriceForJson)
+            const orderToAdd = {
+                date: date,
+                products : context.cartProducts,
+                id: context.order.length,
+                totalProducts : context.cartProducts.length,
+                totalPrice : totalPriceForJson
+            }
+            console.log('aca esta la order creada para sumar a las ordersss')
+        
+            context.setOrder([...context.order, orderToAdd])
+            // limpiamos la orden ya agregada
+            context.setCartProducts([]);
+            context.setCount(0)
+
+        }
+        
+
     return(
-<aside className={`${context.booleanCheckoutSM == false ? 'flex' : 'hidden' } checkout-side-menu  flex-col fixed left-2.5 border border-black rounded-lg bg-white`}>
+<aside className={`${context.booleanCheckoutSM == false ? 'flex' : 'hidden' } checkout-side-menu  flex-col fixed left-2.5 border border-black rounded-lg bg-white p-3`}>
         <div className='flex justify-between items-center px-4 py-2'>
         <h2 className='font-medium text-xl'> My Order </h2>
         <div className='cursor-pointer' onClick={()=> context.changeBoleanCSM()}>✖️</div>
@@ -59,7 +83,7 @@ import './styles.css'
         id={item.id} 
         title={item.title}
         image={item.image}
-        prince={item.price}
+        price={item.price}
         removeToCart={removeToCart}
         quantity={item.quantity}
         addMore={addMore}
@@ -69,16 +93,11 @@ import './styles.css'
             <p>Total Price</p>
             <span className='text-bold'> {` $ ${context.totalPrice()}`} </span>
         </div>
+        <NavLink to={`/MyOrders/${context.order.length}`}>
+        <button className='w-full bg-black text-white py-3 rounded-lg' onClick={()=>{ handleCheckout()}}> Checkout </button>
+        </NavLink>
 </aside>
     )
 }
 export default CheckoutSideMenu
 
-{/* <figure className='px-6'>
-            <img className=' rounded-lg' src={`${itemToShow.image}`} alt={`${itemToShow.title}`} />
-        </figure>
-            <p className='flex flex-col p-6' >
-                <span className='font-medium text-2xl'>{itemToShow.price}</span>
-                <span className='font-medium text-md'>{itemToShow.title}</span>
-                <span className='font-light text-sm'>{itemToShow.description}</span>
-            </p> */}

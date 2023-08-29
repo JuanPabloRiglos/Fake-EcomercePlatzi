@@ -6,7 +6,7 @@ import MyOrders from '../My-Orders';
 import NotFound from '../NotFound';
 import Signin from '../Signin';
 import Navbar from '../../Components/Navbar/Index';
-import { ShoppingCartProvider } from '../../Context/Index';
+import { ShoppingCartProvider } from '../../Context/Index.jsx';
 import './App.css'
 
 
@@ -16,6 +16,7 @@ import './App.css'
       {path: '/MyAccount', element: < MyAccount/>},
       {path:'/MyOrder' , element: <MyOrder />},
       {path:'/MyOrders' , element: < MyOrders/>},
+      {path:'/MyOrders/:id' , element: < MyOrder/>},
       {path: '/Signin', element: < Signin/>},
       {path:'/#' , element: < NotFound/>}
     ])
@@ -27,8 +28,8 @@ function App() {
     
       <ShoppingCartProvider>
       <BrowserRouter>
-     <AppRoutes/>
-     <Navbar />
+         <AppRoutes/>
+        <Navbar />
       </BrowserRouter>
   </ShoppingCartProvider>
     

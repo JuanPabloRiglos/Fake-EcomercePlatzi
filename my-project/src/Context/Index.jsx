@@ -24,6 +24,11 @@ export const ShoppingCartProvider = ({children}) =>{
     const changeBoleanCSM =()=>{
         setbooleanCheckoutSM(! booleanCheckoutSM)
     };
+
+    // ORDER - shoppi cart -- navPrincipal
+
+    const [order , setOrder] = useState([ ])
+
     // retorna el valor total de productos en el carrito
      
     const totalPrice=()=>{
@@ -36,7 +41,7 @@ export const ShoppingCartProvider = ({children}) =>{
 
             totalValue = totalValue + cartProducts[i].price
         }
-           return totalValue
+           return totalValue.toFixed(2)
         };
     
   
@@ -52,7 +57,9 @@ export const ShoppingCartProvider = ({children}) =>{
             setCartProducts,
             booleanCheckoutSM,
             changeBoleanCSM,
-            totalPrice
+            totalPrice, 
+            order, 
+            setOrder
             }}>
         {children}
         </ShoppingCartContext.Provider>
