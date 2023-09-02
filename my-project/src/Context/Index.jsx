@@ -45,29 +45,42 @@ export const ShoppingCartProvider = ({children}) =>{
     const [filtredItems, setFiltredItems] = useState([])
     //title
     const [searchByTitle , setSearchByTitle] = useState(null)
-    console.log(searchByTitle);
+
      const filteredItemsByTitleFuncion  =( items , searchByTitle ) =>{
         return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
      }
     //categoy
     const [searchByCategory , setSearchByCategory] = useState(null)
-    console.log(searchByCategory);
-    const filteredItemsByCategoryFuncion = ( items , searchByCategory ) =>{
-        return items?.filter((item) => item.category.toLowerCase().includes(searchByCategory))
-     }
-    //  //see ALL again
-    //  const seeAllAgein =  (items) =>{
-    //     return items?.map((item) => setItems(item))
-    //  }
-     //useEfect segun Search
 
+    const filteredItemsByCategoryFuncion = ( items , searchByCategory ) =>{
+        return items?.filter((item) => item.category.toLowerCase()===(searchByCategory))
+     }
+     const filtredBy = (items, typeOfSearch , isAllTrue) =>{
+        if(typeOfSearch == searchByTitle ){
+           return setFiltredItems( filteredItemsByTitleFuncion(items, searchByTitle))
+        }else if(typeOfSearch == searchByCategory &&  ! isAllTrue ){
+            return setFiltredItems(filteredItemsByCategoryFuncion(items, searchByCategory))
+        }else if ( typeOfSearch == searchByCategory && isAllTrue == searchByTitle ){
+            return setFiltredItems(filteredItemsByTitleFuncion(items, searchByTitle).filter((item) =>(item.category.toLowerCase()) === (searchByCategory.toLowerCase())))
+
+        }
+        setSearchByCategory(null)
+        setSearchByTitle(null)
+    }
+    console.log('title :' , setSearchByTitle )
+    console.log('categoria :' , setSearchByCategory )
+    
      useEffect(()=>{
-        if(searchByTitle)
-        {setFiltredItems(filteredItemsByTitleFuncion(items, searchByTitle))
-     }else if(searchByCategory) {
-      setFiltredItems(filteredItemsByCategoryFuncion(items , searchByCategory))}
+        if(searchByTitle  && !searchByCategory)
+        {(filtredBy(items, searchByTitle))
+     }else if( !searchByTitle && searchByCategory) {
+        console.log(searchByCategory)
+        filtredBy(items , searchByCategory)}
+        else if ( searchByTitle && searchByCategory){
+            filtredBy(items , searchByCategory , searchByTitle)
+        }
      },[items, searchByTitle , searchByCategory])
-    console.log('filtredItems nuevos: ', filtredItems )
+ 
 
     // retorna el valor total de productos en el carrito
      

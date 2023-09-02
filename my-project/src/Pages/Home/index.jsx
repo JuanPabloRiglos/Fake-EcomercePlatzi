@@ -12,23 +12,12 @@ function Home() {
   const context = useContext(ShoppingCartContext)
 
   const renderView = ()=>{
-  if(context.searchByTitle && context.searchByTitle.length > 0 ){
-    if(context.filtredItems && context.filtredItems.length > 0 ) {
-
+    if(context.filtredItems.length > 0){
       return(
-        context.filtredItems?.map(item => <Card key={item.id} data={item} />)
-      )
-    }else{
-      return (
-        <div> Your search don't have result</div>
-      )
-    } 
-    }else if(context.searchByCategory && context.searchByCategory.length > 0){
-        return(
-          context.filtredItems.map(item => <Card key={item.id} data={item} />)
-        )
-      
-  } else {
+              context.filtredItems.map(item => <Card key={item.id} data={item} />)
+            )
+    }
+ else {
     return (
         context.items.map(item => <Card key={item.id} data={item} />))
   }

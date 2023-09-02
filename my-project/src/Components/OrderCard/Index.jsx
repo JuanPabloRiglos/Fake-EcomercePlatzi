@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 const OrderCard= product =>{
-    console.log(product)
+  
     const {id, title, image, price , removeToCart , quantity , addMore , removeToCartOneOfOne} = product
 
     // bloque para renderizar card segun parametros, seran distintos de acuerdo en que padre se renderiza.

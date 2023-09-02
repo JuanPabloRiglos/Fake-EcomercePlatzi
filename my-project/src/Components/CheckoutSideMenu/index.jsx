@@ -50,6 +50,7 @@ import './styles.css'
         context.setCount(context.count - totalToDescount)}
 
         function handleCheckout (){
+            
             let dateForJson =  new Date()
             let dateString = JSON.stringify(dateForJson).substring(0,11)
             let date =( dateString + ' "')
@@ -62,8 +63,7 @@ import './styles.css'
                 totalProducts : context.cartProducts.length,
                 totalPrice : totalPriceForJson
             }
-            console.log('aca esta la order creada para sumar a las ordersss')
-        
+            console.log( 'Despues de boton chek' , context.cartProducts)
             context.setOrder([...context.order, orderToAdd])
             // limpiamos la orden ya agregada
             context.setCartProducts([]);

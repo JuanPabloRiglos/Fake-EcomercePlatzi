@@ -11,8 +11,8 @@ function showCart(){// aun no anda, si hace falta, revisar al final del curso.
 }
 
 const deletedFilters =()=>{
-    context.setSearchByCategory(null);
-    context.setSearchByTitle(null);
+    
+    context.setFiltredItems([]);
 }
     const activeStyle = 'underline underline-offset-4'
     return(

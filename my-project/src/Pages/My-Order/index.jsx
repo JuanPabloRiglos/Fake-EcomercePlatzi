@@ -25,7 +25,7 @@ function MyOrder() {
 
 
         <div className='px-6 overflow-y-scroll'>
-        { (idInPath)? oldsOrder[idInPath].products.map((item) => (<OrderCard key={item.id}
+        { (idInPath) ? oldsOrder[idInPath].products.map((item) => (<OrderCard key={item.id}
         id={item.id} 
         title={item.title}
         image={item.image}
